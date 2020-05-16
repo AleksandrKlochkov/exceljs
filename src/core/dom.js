@@ -1,5 +1,6 @@
 class Dom {
     constructor(selector) {
+        this.$$listeners = {}
         // eslint-disable-next-line max-len
         this.$el = typeof selector === 'string' ? document.querySelector(selector) : selector;
     }
@@ -17,6 +18,14 @@ class Dom {
         return this
     }
 
+    on(eventType, callback) {
+        this.$el.addEventListener(eventType, callback)
+    }
+
+    off(eventType, callback) {
+        this.$el.removeEventListener(eventType, callback)
+    }
+
     append(node) {
         if (node instanceof Dom) {
             node = node.$el
@@ -31,8 +40,6 @@ class Dom {
         return this
     }
 }
-
-$('div').html(`<h1>TEst</h1>`)
 
 export function $(selector) {
     return new Dom(selector)
