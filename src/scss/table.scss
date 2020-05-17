@@ -17,6 +17,7 @@
   }
 
   .row-info {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,6 +34,7 @@
 
   .column {
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     background: #f8f9fa;
@@ -59,9 +61,38 @@
 
     &.selected {
       border: none;
-      outline: 2px solid #3c74ff;
+      outline: 2px solid $primary-color;
       z-index: 2;
     }
+  }
+
+  .col-resize, .row-resize {
+    background-color: $primary-color;
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
+
+  .col-resize {
+    width: 4px;
+    top: 0;
+    &:hover {
+      cursor: col-resize;
+    }
+  }
+
+  .row-resize{
+    height: 4px;
+    left: 0;
+    &:hover {
+      cursor: row-resize;
+    }
+
   }
 
 }
