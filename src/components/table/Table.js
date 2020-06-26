@@ -17,7 +17,6 @@ export class Table extends ExcelComponent {
             listeners: ['mousedown', 'keydown', 'input'],
             ...options
         })
-        console.log(this.store.getState());
     }
 
     toHTML() {
@@ -36,7 +35,6 @@ export class Table extends ExcelComponent {
         this.selectCell($cell)
 
         this.$on('formula:input', value => {
-            console.log(value)
           this.selection.current
             .attr('data-value', value)
             .text(parse(value))
@@ -60,7 +58,6 @@ export class Table extends ExcelComponent {
         this.selection.select($cell)
         this.$emit('table:select', $cell)
         const styles = $cell.getStyles(Object.keys(defaultStyles));
-        console.log('styles', styles)
         this.$dispatch(actions.changeStyles(styles))
     }
 
